@@ -42,7 +42,6 @@ public class RoutePoint {
 	}
 
 	public RoutePoint(Integer id, String gps, String description) {
-		super();
 		this.id = id;
 		this.gps = gps;
 		this.description = description;
