@@ -20,7 +20,7 @@ public class ManagerToClientAdapter implements Clientable {
 
 	@Override
 	public String info() {
-		throw new UnsupportedOperationException("temporarily");
+		return "Info";
 	}
 	
 }

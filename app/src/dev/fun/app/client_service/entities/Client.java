@@ -1,6 +1,10 @@
 package dev.fun.app.client_service.entities;
 
+import dev.fun.app.client_service.facades.ClientInfoFacade;
+import dev.fun.app.client_service.facades.ClientInfoFacadeImpl;
 import dev.fun.app.client_service.interfaces.Clientable;
+import dev.fun.app.client_service.services.ClientServiceImpl;
+import dev.fun.app.order_service.services.OrderServiceImpl;
 
 public class Client implements Clientable {
 	
@@ -39,6 +43,7 @@ public class Client implements Clientable {
 	private final String name;
 	private final String password;
 	private final String tel;
+	private final ClientInfoFacade clientInfoFacade;
 	
 	public Integer getId() {
 		return id;
@@ -61,11 +66,12 @@ public class Client implements Clientable {
 		this.name = name;
 		this.password = password;
 		this.tel = tel;
+		this.clientInfoFacade = new ClientInfoFacadeImpl(new ClientServiceImpl(), new OrderServiceImpl());
 	}
 
 	@Override
 	public String info() {
-		throw new UnsupportedOperationException("temporarily)");
+		return clientInfoFacade.getInfo();
 	}
 
 }
