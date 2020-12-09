@@ -2,14 +2,12 @@ package dev.fun.app.employee_service.entities;
 
 import java.util.List;
 
-
 import dev.fun.app.client_service.entities.Client;
 import dev.fun.app.employee_service.enums.Position;
+import dev.fun.app.employee_service.interfaces.Manageable;
 import dev.fun.app.order_service.entities.Order;
-import dev.fun.app.web_service.interfaces.ClientService;
-import dev.fun.app.web_service.interfaces.ManagerService;
 
-public class Manager implements ClientService, ManagerService {
+public class Manager implements Manageable {
 	
 	public static class Builder {
 		private Integer id;
@@ -84,47 +82,47 @@ public class Manager implements ClientService, ManagerService {
 
 	@Override
 	public Order createOrder(Order order) {
-		throw new UnsupportedOperationException("createOrder");
+		throw new UnsupportedOperationException("temporarily");
 	}
 
 	@Override
 	public Order getOrder(Integer orderId) {
-		throw new UnsupportedOperationException("getOrder");
+		throw new UnsupportedOperationException("temporarily");
 	}
 
 	@Override
 	public Client createClient(Client client) {
-		throw new UnsupportedOperationException("createClient");
+		throw new UnsupportedOperationException("temporarily");
 	}
 
 	@Override
 	public void deleteOrder(Integer orderId) {
-		throw new UnsupportedOperationException("deleteOrder");
+		throw new UnsupportedOperationException("temporarily");
 	}
 
 	@Override
 	public void deleteClient(Integer clientId) {
-		throw new UnsupportedOperationException("deleteClient");
+		throw new UnsupportedOperationException("temporarily");
 	}
 
 	@Override
 	public List<Order> getOrders(Integer clientId) {
-		throw new UnsupportedOperationException("getOrders");
+		throw new UnsupportedOperationException("temporarily");
 	}
 
 	@Override
 	public Order update(Order order) {
-		throw new UnsupportedOperationException("update");
+		throw new UnsupportedOperationException("temporarily");
 	}
 
 	@Override
 	public Client update(Client client) {
-		throw new UnsupportedOperationException("update");
+		throw new UnsupportedOperationException("temporarily");
 	}
 
 	@Override
 	public Client getClient(Integer clientId) {
-		throw new UnsupportedOperationException("getClient");
+		throw new UnsupportedOperationException("temporarily");
 	}
 
 }

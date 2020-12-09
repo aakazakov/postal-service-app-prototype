@@ -1,11 +1,8 @@
 package dev.fun.app.client_service.entities;
 
-import java.util.List;
+import dev.fun.app.client_service.interfaces.Clientable;
 
-import dev.fun.app.order_service.entities.Order;
-import dev.fun.app.web_service.interfaces.ClientService;
-
-public class Client implements ClientService {
+public class Client implements Clientable {
 	
 	public static class Builder {
 		private Integer id;
@@ -67,23 +64,8 @@ public class Client implements ClientService {
 	}
 
 	@Override
-	public List<Order> getOrders(Integer clientId) {
-		throw new UnsupportedOperationException("getOrders");
-	}
-
-	@Override
-	public Order update(Order order) {
-		throw new UnsupportedOperationException("update");
-	}
-
-	@Override
-	public Client update(Client client) {
-		throw new UnsupportedOperationException("update");
-	}
-
-	@Override
-	public Client getClient(Integer clientId) {
-		throw new UnsupportedOperationException("getClient");
+	public String info() {
+		throw new UnsupportedOperationException("temporarily)");
 	}
 
 }
