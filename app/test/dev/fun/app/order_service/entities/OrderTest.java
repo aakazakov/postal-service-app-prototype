@@ -7,7 +7,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import dev.fun.app.client_service.entities.Client;
-import dev.fun.app.order_service.enums.OrderStatus;
 import dev.fun.app.router_service.entities.RoutePoint;
 import dev.fun.app.router_service.entities.Router;
 
@@ -23,7 +22,6 @@ class OrderTest {
 				.setWidth(3.0f)
 				.setDepth(4.0f)
 				.setRoute(route)
-				.setOrderStatus(OrderStatus.SHIPPED)
 				.setSender(new Client.Builder().setName("Sender").build())
 				.setRecipient(new Client.Builder().setName("Recipient").build())
 				.build();
@@ -37,6 +35,39 @@ class OrderTest {
 		assertEquals(route, order.getRoute());
 		assertEquals("Sender", order.getSender().getName());
 		assertEquals("Recipient", order.getRecipient().getName());
+		
+		@SuppressWarnings("static-access")
+		String currentState = ((Created)order.getState()).STATE;
+		
+		assertEquals(Created.STATE, currentState);
+	}
+	
+	@Test
+	void should_change_route() {
+		List<RoutePoint> route = (new Router()).route(1, 2);
+		List<RoutePoint> newRoute = (new Router()).route(3, 4);
+		Order order = new Order.Builder()
+				.setId(1)
+				.setRoute(route)
+				.build();
+		
+		assertEquals(route, order.getRoute());
+		
+		order.changeRoute(newRoute);
+		
+		assertEquals(newRoute, order.getRoute());
+	}
+	
+	@Test
+	void should_change_state() {
+		Order order = new Order.Builder().build();
+		
+		order.completed();
+		
+		@SuppressWarnings("static-access")
+		String newState = ((Completed)order.getState()).STATE;
+		
+		assertEquals(Completed.STATE, newState);
 	}
 
 }
