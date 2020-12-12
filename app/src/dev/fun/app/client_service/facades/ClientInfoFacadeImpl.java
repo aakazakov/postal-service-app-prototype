@@ -23,7 +23,6 @@ public class ClientInfoFacadeImpl implements ClientInfoFacade {
 	public String getInfo() {
 		Client client = clientService.getCurrent();
 		
-		@SuppressWarnings("unused")
 		List<Order> orders = orderService.getOrders(client.getId());
 		
 		// Formation of general information...
