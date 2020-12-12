@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import dev.fun.app.client_service.entities.Client;
 import dev.fun.app.router_service.entities.RoutePoint;
-import dev.fun.app.router_service.entities.Router;
+import dev.fun.app.router_service.services.Router;
 
 class OrderTest {
 

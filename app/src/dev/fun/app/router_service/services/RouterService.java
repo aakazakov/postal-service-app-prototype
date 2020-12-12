@@ -1,9 +1,11 @@
-package dev.fun.app.router_service.entities;
+package dev.fun.app.router_service.services;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Router {
+import dev.fun.app.router_service.entities.RoutePoint;
+
+public interface RouterService {
 	
 	/**
 	 * Computes a route.
@@ -11,8 +13,6 @@ public class Router {
 	 * @param end an id of {@link RoutePoint}.
 	 * @return {@link ArrayList} of {@link RoutePoint}.
 	 */
-	public List<RoutePoint> route(Integer start, Integer end) {
-		return new ArrayList<>();
-	}
-
+	List<RoutePoint> route(Integer start, Integer end);
+	
 }
