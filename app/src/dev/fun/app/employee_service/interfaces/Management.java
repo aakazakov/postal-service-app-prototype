@@ -5,7 +5,7 @@ import java.util.List;
 import dev.fun.app.client_service.entities.Client;
 import dev.fun.app.order_service.entities.Order;
 
-public interface Manageable {
+public interface Management {
 	
 	Order createOrder(Order order);
 	Order getOrder(Integer orderId);

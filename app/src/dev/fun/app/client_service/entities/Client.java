@@ -2,11 +2,11 @@ package dev.fun.app.client_service.entities;
 
 import dev.fun.app.client_service.facades.ClientInfoFacade;
 import dev.fun.app.client_service.facades.ClientInfoFacadeImpl;
-import dev.fun.app.client_service.interfaces.Clientable;
+import dev.fun.app.client_service.interfaces.Customer;
 import dev.fun.app.client_service.services.ClientServiceImpl;
 import dev.fun.app.order_service.services.OrderServiceImpl;
 
-public class Client implements Clientable {
+public class Client implements Customer {
 	
 	public static class Builder {
 		private Integer id;

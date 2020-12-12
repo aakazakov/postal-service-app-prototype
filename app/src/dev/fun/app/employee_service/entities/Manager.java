@@ -4,10 +4,10 @@ import java.util.List;
 
 import dev.fun.app.client_service.entities.Client;
 import dev.fun.app.employee_service.enums.Position;
-import dev.fun.app.employee_service.interfaces.Manageable;
+import dev.fun.app.employee_service.interfaces.Management;
 import dev.fun.app.order_service.entities.Order;
 
-public class Manager implements Manageable {
+public class Manager implements Management {
 	
 	public static class Builder {
 		private Integer id;

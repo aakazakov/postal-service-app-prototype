@@ -1,20 +1,20 @@
 package dev.fun.app.employee_service.adapters;
 
-import dev.fun.app.client_service.interfaces.Clientable;
-import dev.fun.app.employee_service.interfaces.Manageable;
+import dev.fun.app.client_service.interfaces.Customer;
+import dev.fun.app.employee_service.interfaces.Management;
 
 /**
  * Provides a client interface for use by a manager.
  */
-public class ManagerToClientAdapter implements Clientable {
+public class ManagerToClientAdapter implements Customer {
 	
-	private Manageable manger;
+	private Management manger;
 	
-	public Manageable getManger() {
+	public Management getManger() {
 		return manger;
 	}
 	
-	public ManagerToClientAdapter(Manageable manger) {
+	public ManagerToClientAdapter(Management manger) {
 		this.manger = manger;	
 	}
 

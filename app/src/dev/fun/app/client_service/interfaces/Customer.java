@@ -1,6 +1,6 @@
 package dev.fun.app.client_service.interfaces;
 
-public interface Clientable {
+public interface Customer {
 
 	/**
 	 * Returns general information about the current client<br>
