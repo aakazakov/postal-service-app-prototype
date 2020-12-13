@@ -1,10 +1,8 @@
 package dev.fun.app.order_service.entities;
 
-import java.util.List;
-
 import dev.fun.app.client_service.entities.Client;
 import dev.fun.app.order_service.states.*;
-import dev.fun.app.router_service.entities.RoutePoint;
+import dev.fun.app.router_service.objects.Route;
 
 public class Order {
 	
@@ -14,7 +12,7 @@ public class Order {
 		private Float height;
 		private Float width;
 		private Float depth;
-		private List<RoutePoint> route;
+		private Route route;
 		private Client sender;
 		private Client recipient;
 		
@@ -43,7 +41,7 @@ public class Order {
 			return this;
 		}
 		
-		public Builder setRoute(List<RoutePoint> route) {
+		public Builder setRoute(Route route) {
 			this.route = route;
 			return this;
 		}
@@ -77,7 +75,7 @@ public class Order {
 	private final Client sender;
 	private final Client recipient;	
 	
-	private List<RoutePoint> route;
+	private Route route;
 	private OrderState state;
  	
 	public Integer getId() {
@@ -104,7 +102,7 @@ public class Order {
 		return state;
 	}
 
-	public List<RoutePoint> getRoute() {
+	public Route getRoute() {
 		return route;
 	}
 	
@@ -117,7 +115,7 @@ public class Order {
 	}
 
 	public Order(Integer id, Float weight, Float height, Float width, Float depth,
-			List<RoutePoint> route, Client sender, Client recipient) {
+			Route route, Client sender, Client recipient) {
 		this.id = id;
 		this.weight = weight;
 		this.height = height;
@@ -134,11 +132,11 @@ public class Order {
 		this.state = this.created;
 	}
 	
-	public void changeRoute(List<RoutePoint> route) {
+	public void changeRoute(Route route) {
 		state.changeRoute(route);
 	}
 	
-	void setRoute(List<RoutePoint> route) {
+	void setRoute(Route route) {
 		this.route = route;
 	}
 	

@@ -1,12 +1,10 @@
 package dev.fun.app.order_service.states;
 
-import java.util.List;
-
-import dev.fun.app.router_service.entities.RoutePoint;
+import dev.fun.app.router_service.objects.Route;
 
 public interface OrderState {
 	
-	void changeRoute(List<RoutePoint> route);
+	void changeRoute(Route route);
 	
 	void cancelled();
 	

@@ -1,9 +1,7 @@
 package dev.fun.app.order_service.entities;
 
-import java.util.List;
-
 import dev.fun.app.order_service.states.OrderState;
-import dev.fun.app.router_service.entities.RoutePoint;
+import dev.fun.app.router_service.objects.Route;
 
 public class Shipped implements OrderState {
 
@@ -16,7 +14,7 @@ public class Shipped implements OrderState {
 	}
 
 	@Override
-	public void changeRoute(List<RoutePoint> route) {
+	public void changeRoute(Route route) {
 		order.setRoute(route);		
 	}
 	

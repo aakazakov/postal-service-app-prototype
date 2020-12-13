@@ -1,15 +1,14 @@
 package dev.fun.app.router_service.services;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
 
-import dev.fun.app.router_service.entities.RoutePoint;
+import dev.fun.app.router_service.objects.Route;
 
 public class Router implements RouterService {
 	
 	@Override
-	public List<RoutePoint> route(Integer start, Integer end) {
-		return new ArrayList<>();
+	public Route route(Integer start, Integer end) {
+		return new Route(new LinkedList<>());
 	}
 
 }

@@ -2,19 +2,17 @@ package dev.fun.app.order_service.entities;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 import dev.fun.app.client_service.entities.Client;
-import dev.fun.app.router_service.entities.RoutePoint;
+import dev.fun.app.router_service.objects.Route;
 import dev.fun.app.router_service.services.Router;
 
 class OrderTest {
 
 	@Test
 	void should_buid_an_order() {
-		List<RoutePoint> route = (new Router()).route(1, 2);
+		Route route = (new Router()).route(1, 2);
 		Order order = new Order.Builder()
 				.setId(1)
 				.setWeight(1.0f)
@@ -44,8 +42,8 @@ class OrderTest {
 	
 	@Test
 	void should_change_route() {
-		List<RoutePoint> route = (new Router()).route(1, 2);
-		List<RoutePoint> newRoute = (new Router()).route(3, 4);
+		Route route = (new Router()).route(1, 2);
+		Route newRoute = (new Router()).route(3, 4);
 		Order order = new Order.Builder()
 				.setId(1)
 				.setRoute(route)
