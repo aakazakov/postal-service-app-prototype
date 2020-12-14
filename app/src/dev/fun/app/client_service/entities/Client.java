@@ -9,64 +9,86 @@ import dev.fun.app.order_service.services.OrderServiceImpl;
 public class Client implements Customer {
 	
 	public static class Builder {
-		private Integer id;
-		private String name;
-		private String password;
-		private String tel;
+		private Client client;
+		
+		public Builder() {
+			this.client = new Client();
+		}
 		
 		public Builder setId(Integer id) {
-			this.id = id;
+			this.client.setId(id);
 			return this;
 		}
 		
 		public Builder setName(String name) {
-			this.name = name;
+			this.client.setName(name);
 			return this;
 		}
 		
 		public Builder setPassword(String password) {
-			this.password = password;
+			this.client.setPassword(password);
 			return this;
 		}
 		
 		public Builder setTel(String tel) {
-			this.tel = tel;
+			this.client.setTel(tel);
 			return this;
 		}
 		
 		public Client build() {
-			return new Client(id, name, password, tel);
+			return this.client;
 		}			
 	}
 	
-	private final Integer id;
-	private final String name;
-	private final String password;
-	private final String tel;
-	private final ClientInfoFacade clientInfoFacade;
+	private Integer id;
+	private String name;
+	private String password;
+	private String tel;
+	private ClientInfoFacade clientInfoFacade;
+	
 	
 	public Integer getId() {
 		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getName() {
 		return name;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public String getPassword() {
 		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getTel() {
 		return tel;
 	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	public Client() {
+		this.clientInfoFacade = new ClientInfoFacadeImpl(new ClientServiceImpl(), new OrderServiceImpl());
+	}
 	
-	public Client(Integer id, String name, String password, String tel) {
+ 	public Client(Integer id, String name, String password, String tel) {
+ 		this();
 		this.id = id;
 		this.name = name;
 		this.password = password;
 		this.tel = tel;
-		this.clientInfoFacade = new ClientInfoFacadeImpl(new ClientServiceImpl(), new OrderServiceImpl());
 	}
 
 	@Override

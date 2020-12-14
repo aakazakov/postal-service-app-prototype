@@ -5,31 +5,33 @@ import dev.fun.app.router_service.objects.Location;
 public class RoutePoint {
 	
 	public static class Builder {
-		private Integer id;
-		private Location location;
-		private String description;
+		private RoutePoint routePoint;
+		
+		public Builder() {
+			this.routePoint = new RoutePoint();
+		}
 		
 		public Builder setId(Integer id) {
-			this.id = id;
+			this.routePoint.setId(id);
 			return this;
 		}
 		public Builder setLocation(Location location) {
-			this.location = location;
+			this.routePoint.setLocation(location);
 			return this;
 		}
 		public Builder setDescription(String description) {
-			this.description = description;
+			this.routePoint.setDescription(description);
 			return this;
 		}
 		
 		public RoutePoint build() {
-			return new RoutePoint(id, location, description);
+			return this.routePoint;
 		}
 	}
 	
-	private final Integer id;
-	private final Location location;
-	private final String description;
+	private Integer id;
+	private Location location;
+	private String description;
 	
 	public Integer getId() {
 		return id;
@@ -39,8 +41,24 @@ public class RoutePoint {
 		return location;
 	}
 
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+
 	public String getDescription() {
 		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public RoutePoint() {
+		
 	}
 
 	public RoutePoint(Integer id, Location location, String description) {

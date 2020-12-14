@@ -10,68 +10,92 @@ import dev.fun.app.order_service.entities.Order;
 public class Manager implements Management {
 	
 	public static class Builder {
-		private Integer id;
-		private String name;
-		private String password;
-		private Position position;
-		private String tel;
+		private Manager manager;
+		
+		public Builder() {
+			this.manager = new Manager();
+		}
 		
 		public Builder setId(Integer id) {
-			this.id = id;
+			this.manager.setId(id);
 			return this;
 		}
 		
 		public Builder setName(String name) {
-			this.name = name;
+			this.manager.setName(name);
 			return this;
 		}
 		
 		public Builder setPassword(String password) {
-			this.password = password;
+			this.manager.setPassword(password);
 			return this;
 		}
 		
 		public Builder setPosition(Position position) {
-			this.position = position;
+			this.manager.setPosition(position);
 			return this;
 		}
 		
 		public Builder setTel(String tel) {
-			this.tel = tel;
+			this.manager.setTel(tel);
 			return this;
 		}
 		
 		public Manager build() {
-			return new Manager(id, name, password, position, tel);
+			return this.manager;
 		}
 	}
 	
-	private final Integer id;
-	private final String name;
-	private final String password;
-	private final Position position;
-	private final String tel;
+	private Integer id;
+	private String name;
+	private String password;
+	private Position position;
+	private String tel;
 	
 	public Integer getId() {
 		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getName() {
 		return name;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public String getPassword() {
 		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public Position getPosition() {
 		return position;
 	}
 
+	public void setPosition(Position position) {
+		this.position = position;
+	}
+
 	public String getTel() {
 		return tel;
 	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
 	
+	public Manager() {
+		
+	}
+
 	public Manager(Integer id, String name, String password, Position position, String tel) {
 		this.id = id;
 		this.name = name;

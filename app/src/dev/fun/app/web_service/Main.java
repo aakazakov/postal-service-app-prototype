@@ -1,4 +1,4 @@
-package dev.fun.app.web_service.interfaces;
+package dev.fun.app.web_service;
 
 import dev.fun.app.client_service.entities.Client;
 import dev.fun.app.client_service.interfaces.Customer;
