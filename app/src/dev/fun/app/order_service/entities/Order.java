@@ -1,6 +1,7 @@
 package dev.fun.app.order_service.entities;
 
 import dev.fun.app.client_service.entities.Client;
+import dev.fun.app.common.money.Money;
 import dev.fun.app.order_service.states.*;
 import dev.fun.app.router_service.objects.Route;
 
@@ -53,6 +54,11 @@ public class Order {
 			return this;
 		}
 		
+		public Builder setCost(Money cost) {
+			this.order.setCost(cost);
+			return this;
+		}
+		
 		public Order build() {
 			this.order.setCreated();
 			return this.order;
@@ -73,6 +79,7 @@ public class Order {
 	private Client sender;
 	private Client recipient;
 	private Route route;
+	private Money cost;
 	private OrderState state;
  	
 	public Integer getId() {
@@ -138,6 +145,14 @@ public class Order {
 	void setRoute(Route route) {
 		this.route = route;
 	}
+	
+	public Money getCost() {
+		return cost;
+	}
+	
+	public void setCost(Money cost) {
+		this.cost = cost;
+	}
 
 	public OrderState getState() {
 		return state;
@@ -156,7 +171,7 @@ public class Order {
 	}
 
 	public Order(Integer id, Float weight, Float height, Float width, Float depth,
-			Route route, Client sender, Client recipient) {
+			Route route, Client sender, Client recipient, Money cost) {
 		this();
 		this.id = id;
 		this.weight = weight;
@@ -166,6 +181,7 @@ public class Order {
 		this.route = route;
 		this.sender = sender;
 		this.recipient = recipient;
+		this.cost = cost;
 		this.state = this.created;
 	}
 	
