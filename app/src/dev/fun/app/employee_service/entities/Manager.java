@@ -103,6 +103,11 @@ public class Manager implements Management {
 		this.position = position;
 		this.tel = tel;
 	}
+	
+	@Override
+	public String info() {
+		return "manager info";
+	}
 
 	@Override
 	public Order createOrder(Order order) {
