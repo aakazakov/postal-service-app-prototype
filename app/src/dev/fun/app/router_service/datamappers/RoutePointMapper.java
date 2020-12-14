@@ -18,7 +18,7 @@ public class RoutePointMapper {
 	
 	public RoutePoint findById(Integer id) throws SQLException {
 		RoutePoint routePoint = null;
-		String query = "SELECT id, description, gps FROM route_point WHERE route_point.id=?";
+		String query = "SELECT id, description, gps FROM route_points WHERE route_points.id=?";
 		try (PreparedStatement prepareStatement = connection.prepareStatement(query)) {
 			prepareStatement.setInt(1, id);
 			ResultSet resultSet = prepareStatement.executeQuery();
