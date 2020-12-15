@@ -18,6 +18,8 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
+	// ================================= Demo :) ====================================
+		
 		{
 			Customer client = new Client.Builder().setId(10).setName("Client").build();
 			
@@ -31,7 +33,7 @@ public class Main {
 			}
 		}
 		
-		// ===================================================================================
+		// ================================= Demo :) ====================================
 		
 		{
 			try (Connection connection = DriverManager.getConnection("jdbc:sqlite::memory:");
@@ -51,8 +53,12 @@ public class Main {
 				statement.execute("insert into clients (id, name, password, tel) values (1, 'Client1', 'pass1', '9999999999')");
 				
 				ClientMapper clientMapper = new ClientMapper(connection);
+				
 				Client client = clientMapper.findById(1);
 				System.out.println(client.getName());
+				
+				clientMapper.save(new Client.Builder().setName("Client2").setPassword("Password2").setTel("1234567890").build());
+				System.out.println(clientMapper.findById(10).getName());
 				
 			} catch (SQLException e) {
 				System.err.println(e.getMessage());

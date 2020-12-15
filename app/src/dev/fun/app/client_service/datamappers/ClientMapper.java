@@ -30,5 +30,23 @@ public class ClientMapper {
 		}
 		return client;
 	}
-
+	
+	// temporarily void, should actually return the saved client
+	public void save(Client client) throws SQLException {
+		String query = "INSERT INTO clients (id, name, password, tel) values (?, ?, ?, ?)";
+		try (PreparedStatement statement = connection.prepareStatement(query)) {
+			statement.setInt(1, 10);
+			statement.setString(2, client.getName());
+			statement.setString(3, client.getPassword());
+			statement.setString(4, client.getTel());
+			statement.execute();
+		}
+	}
+	
+	public void deleteById(Integer id) {
+		
+		// remove client by id from the DB
+		
+	}
+	
 }
