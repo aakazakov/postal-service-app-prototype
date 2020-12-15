@@ -3,7 +3,7 @@ package dev.fun.app.order_service.entities;
 import dev.fun.app.client_service.entities.Client;
 import dev.fun.app.common.money.Money;
 import dev.fun.app.order_service.states.*;
-import dev.fun.app.router_service.objects.Route;
+import dev.fun.app.router_service.entities.Route;
 
 public class Order {
 	

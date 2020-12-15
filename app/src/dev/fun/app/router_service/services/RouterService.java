@@ -1,7 +1,7 @@
 package dev.fun.app.router_service.services;
 
+import dev.fun.app.router_service.entities.Route;
 import dev.fun.app.router_service.entities.RoutePoint;
-import dev.fun.app.router_service.objects.Route;
 
 public interface RouterService {
 	

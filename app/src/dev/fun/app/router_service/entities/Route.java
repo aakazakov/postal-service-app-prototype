@@ -1,16 +1,29 @@
-package dev.fun.app.router_service.objects;
+package dev.fun.app.router_service.entities;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-import dev.fun.app.router_service.entities.RoutePoint;
-
 public class Route {
-	
+		
 	private final List<RoutePoint> list;
 	
+	private Integer id;
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public Route(List<RoutePoint> list) {
+		this.list = new LinkedList<>(list);
+	}
+	
+	public Route(Integer id, List<RoutePoint> list) {
+		this.id = id;
 		this.list = new LinkedList<>(list);
 	}
 	

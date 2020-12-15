@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import dev.fun.app.client_service.entities.Client;
 import dev.fun.app.common.money.Money;
-import dev.fun.app.router_service.objects.Route;
+import dev.fun.app.router_service.entities.Route;
 import dev.fun.app.router_service.services.Router;
 
 class OrderTest {
@@ -40,9 +40,9 @@ class OrderTest {
 		assertEquals(123456L, order.getCost().getValue());
 		
 		@SuppressWarnings("static-access")
-		String currentState = ((Created)order.getState()).STATE;
+		String currentState = order.getState().state();
 		
-		assertEquals(Created.STATE, currentState);
+		assertEquals("Created", currentState);
 	}
 	
 	@Test
@@ -67,10 +67,9 @@ class OrderTest {
 		
 		order.completed();
 		
-		@SuppressWarnings("static-access")
-		String newState = ((Completed)order.getState()).STATE;
+		String newState = order.getState().state();
 		
-		assertEquals(Completed.STATE, newState);
+		assertEquals("Completed", newState);
 	}
 
 }
