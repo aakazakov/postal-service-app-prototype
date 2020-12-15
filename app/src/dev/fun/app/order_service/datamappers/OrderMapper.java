@@ -81,6 +81,9 @@ public class OrderMapper {
 	}
 	
 	public List<Order> findByClientId(Integer id) {
+		
+		// ...
+		
 		return null;
 	}
 	
