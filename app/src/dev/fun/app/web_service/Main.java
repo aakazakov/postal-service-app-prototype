@@ -14,6 +14,7 @@ import dev.fun.app.common.money.Money;
 import dev.fun.app.employee_service.adapters.ManagerToCustomerAdapter;
 import dev.fun.app.employee_service.entities.Manager;
 import dev.fun.app.employee_service.interfaces.Management;
+import dev.fun.app.order_service.datamappers.IdentityMap;
 import dev.fun.app.order_service.datamappers.OrderMapper;
 import dev.fun.app.order_service.entities.Order;
 import dev.fun.app.router_service.datamappers.RoutePointMapper;
@@ -79,7 +80,11 @@ public class Main {
 						.setRoute(new Route(1, new LinkedList<>())).build());
 				
 				Order order = orderMapper.findById(1);
-				System.out.println(order.getId());
+				
+				IdentityMap.init();
+				IdentityMap.getCurrent().add(order);
+				
+				System.out.println(IdentityMap.getCurrent().find(1).getId());
 				
 			} catch (SQLException e) {
 				System.err.println(e.getMessage());
