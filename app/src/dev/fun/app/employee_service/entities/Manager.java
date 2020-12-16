@@ -7,7 +7,7 @@ import dev.fun.app.employee_service.enums.Position;
 import dev.fun.app.employee_service.interfaces.Management;
 import dev.fun.app.order_service.entities.Order;
 
-public class Manager implements Management {
+public class Manager extends Employee implements Management {
 	
 	public static class Builder {
 		private Manager manager;
@@ -46,7 +46,6 @@ public class Manager implements Management {
 		}
 	}
 	
-	private Integer id;
 	private String name;
 	private String password;
 	private Position position;
