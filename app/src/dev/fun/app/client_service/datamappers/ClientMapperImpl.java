@@ -1,4 +1,4 @@
-package dev.fun.app.employee_service.datamappers;
+package dev.fun.app.client_service.datamappers;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,36 +9,33 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import dev.fun.app.client_service.entities.Client;
 import dev.fun.app.common.dbconnectors.DBConnector;
-import dev.fun.app.employee_service.entities.Manager;
-import dev.fun.app.employee_service.enums.Position;
 
-public class ManagerMapper implements EmployeeMapper<Manager> {
+public class ClientMapperImpl implements ClientMapper {
 	
 	private Logger logger = Logger.getLogger("EmployeeMapperImpl");
 	
-	private final Map<Integer, Manager> identityMap = new HashMap<>();
+	private final Map<Integer, Client> identityMap = new HashMap<>();
 	
-	private final String tableName = "managers";
+	private final String tableName = "clients";
 	
 	private DBConnector connector;
 
-	public ManagerMapper(DBConnector connector) {
+	public ClientMapperImpl(DBConnector connector) {
 		this.connector = connector;
 	}
-
+	
 	@Override
-	public Manager save(Manager manager) {
-		logger.info("`save` method invoked");
-		String query = "INSERT INTO " + tableName + " (name, password, position, tel) VALUES (?, ?, ?, ?)";
-		Manager newManager = null;
+	public Client save(Client client) {
+		String query = "INSERT INTO " + tableName + " (name, password, tel) VALUES (?, ?, ?)";
+		Client newClient = null;
 		Integer id = -1;
 		try (Connection connection = connector.connect();
 				PreparedStatement statement = connection.prepareStatement(query);) {
-			statement.setString(1, manager.getName());
-			statement.setString(2, manager.getPassword());
-			statement.setString(3, manager.getPosition().name());
-			statement.setString(4, manager.getTel());
+			statement.setString(1, client.getName());
+			statement.setString(2, client.getPassword());
+			statement.setString(3, client.getTel());
 			int exeSuccess = statement.executeUpdate();
 			if (exeSuccess > 0) {
 				id = getLastInsertedId(connection);
@@ -47,9 +44,9 @@ public class ManagerMapper implements EmployeeMapper<Manager> {
 			logger.info(e.getMessage());
 		}
 		if (id != -1) {
-			newManager = findById(id);
+			newClient = findById(id);
 		} 
-		return newManager;
+		return newClient;
 	}
 	
 	private Integer getLastInsertedId(Connection connection) {
@@ -64,31 +61,29 @@ public class ManagerMapper implements EmployeeMapper<Manager> {
 		logger.info("last inserted id = " + id);
 		return id;
 	}
-
+	
 	@Override
-	public Manager findById(Integer id) {
-		logger.info("`findById` method invoked");
+	public Client findById(Integer id) {
 		if (inCache(id)) {
 			return identityMap.get(id);
 		}
-		Manager manager = null;
-		String query = "SELECT id, name, password, position, tel FROM " + tableName + " WHERE id=?";
+		Client client = null;
+		String query = "SELECT id, name, password, tel FROM " + tableName + " WHERE id=?";
 		try (Connection connection = connector.connect();
 				PreparedStatement statement = connection.prepareStatement(query);) {
 			statement.setInt(1, id);
 			ResultSet set = statement.executeQuery();
-			manager = new Manager.Builder()
+			client = new Client.Builder()
 					.setId(set.getInt(1))
 					.setName(set.getString(2))
 					.setPassword(set.getString(3))
-					.setPosition(Position.valueOf(set.getString(4)))
-					.setTel(set.getString(5))
-					.build();			
-			identityMap.put(manager.getId(), manager);
+					.setTel(set.getString(4))
+					.build();
+			identityMap.put(client.getId(), client);
 		} catch (SQLException e) {
 			logger.info(e.getMessage());
 		}
-		return manager;
+		return client;
 	}
 
 	@Override
@@ -100,4 +95,5 @@ public class ManagerMapper implements EmployeeMapper<Manager> {
 		return identityMap.containsKey(id);
 	}
 
+	
 }

@@ -7,10 +7,20 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
+import dev.fun.app.client_service.controllers.ClientController;
+import dev.fun.app.client_service.datamappers.ClientMapper;
+import dev.fun.app.client_service.datamappers.ClientMapperImpl;
+import dev.fun.app.client_service.entities.Client;
+import dev.fun.app.client_service.interfaces.Customer;
+import dev.fun.app.client_service.services.ClientService;
+import dev.fun.app.client_service.services.ClientServiceImpl;
 import dev.fun.app.common.dbconnectors.DBConnector;
 import dev.fun.app.common.dbconnectors.DBConnectorFactory;
 import dev.fun.app.common.dbconnectors.SQLiteConnetorFactory;
+import dev.fun.app.employee_service.adapters.ManagerToCustomerAdapter;
 import dev.fun.app.employee_service.controllers.ManagerController;
 import dev.fun.app.employee_service.datamappers.ManagerMapper;
 import dev.fun.app.employee_service.entities.Manager;
@@ -28,9 +38,15 @@ public class Main {
 		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:postal.db");
 				 Statement s = connection.createStatement();) {
 			s.setQueryTimeout(30);
+			
 			s.execute("drop table if exists managers");
 			s.execute("create table managers "
 					+ "(id integer primary key autoincrement, name text, password text, position text, tel text)");
+			
+			s.execute("drop table if exists clients");
+			s.execute("create table clients "
+					+ "(id integer primary key autoincrement, name text, password text, tel text)");
+			
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}
@@ -45,17 +61,44 @@ public class Main {
 		ManagerService managerService = new ManagerService(managerMapper);
 		ManagerController managerController = new ManagerController(managerService);
 		
-		Manager manager = new Manager.Builder()
+		ClientMapper clientMapper = new ClientMapperImpl(connector);
+		ClientService clientService = new ClientServiceImpl(clientMapper);
+		ClientController clientController = new ClientController(clientService);
+		
+		Manager m = new Manager.Builder()
 				.setName("JohnTheManager")
 				.setPassword("secure")
 				.setPosition(Position.MANAGER)
 				.setTel("99999999999")
 				.build();
 	
-		Manager newManager = managerController.create(manager);
+		Manager manager = managerController.create(m);	
+		System.out.println(manager);
 		
-		System.out.println(newManager);
+		Client c1 = new Client.Builder()
+				.setName("TomTheSender")
+				.setPassword("123")
+				.setTel("88888888888")
+				.build();	
 		
+		Client sender = clientController.create(c1);		
+		System.out.println(sender);
+		
+		Client c2 = new Client.Builder()
+				.setName("MaryTheRecipient")
+				.setPassword("pass")
+				.setTel("77777777777")
+				.build();
+		
+		Client recipient = clientController.create(c2);	
+		System.out.println(recipient);
+		
+		List<Customer> customers = new ArrayList<>();	
+		ManagerToCustomerAdapter managerAdapter = new ManagerToCustomerAdapter(manager);		
+		customers.add(managerAdapter);
+		customers.add(c1);
+		customers.add(c2);
+		customers.forEach(c -> System.out.println(c.info()));
 		
 		
 		// >>>>> Delete used DB file <<<<<

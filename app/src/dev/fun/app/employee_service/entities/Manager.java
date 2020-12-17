@@ -1,11 +1,7 @@
 package dev.fun.app.employee_service.entities;
 
-import java.util.List;
-
-import dev.fun.app.client_service.entities.Client;
 import dev.fun.app.employee_service.enums.Position;
 import dev.fun.app.employee_service.interfaces.Management;
-import dev.fun.app.order_service.entities.Order;
 
 public class Manager extends Employee implements Management {
 	
@@ -104,59 +100,14 @@ public class Manager extends Employee implements Management {
 	}
 	
 	@Override
-	public String info() {
-		return "manager info";
-	}
-
-	@Override
-	public Order createOrder(Order order) {
-		throw new UnsupportedOperationException("temporarily");
-	}
-
-	@Override
-	public Order getOrder(Integer orderId) {
-		throw new UnsupportedOperationException("temporarily");
-	}
-
-	@Override
-	public Client createClient(Client client) {
-		throw new UnsupportedOperationException("temporarily");
-	}
-
-	@Override
-	public void deleteOrder(Integer orderId) {
-		throw new UnsupportedOperationException("temporarily");
-	}
-
-	@Override
-	public void deleteClient(Integer clientId) {
-		throw new UnsupportedOperationException("temporarily");
-	}
-
-	@Override
-	public List<Order> getOrders(Integer clientId) {
-		throw new UnsupportedOperationException("temporarily");
-	}
-
-	@Override
-	public Order update(Order order) {
-		throw new UnsupportedOperationException("temporarily");
-	}
-
-	@Override
-	public Client update(Client client) {
-		throw new UnsupportedOperationException("temporarily");
-	}
-
-	@Override
-	public Client getClient(Integer clientId) {
-		throw new UnsupportedOperationException("temporarily");
-	}
-	
-	@Override
 	public String toString() {
 		return String.format(this.getClass() + "%n id: %d,%n pos: %s,%n name: %s,%n password: %s,%n tel: %s%n",
 				id, position.name(), name, password, tel);
+	}
+
+	@Override
+	public String info() {
+		return "manager info";
 	}
 
 }

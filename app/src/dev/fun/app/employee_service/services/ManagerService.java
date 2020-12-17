@@ -29,8 +29,7 @@ public class ManagerService implements EmployeeService<Manager> {
 
 	@Override
 	public Manager update(Manager manager) {
-		logger.info("`update` method ivoked");
-		return managerMapper.save(manager);
+		throw new UnsupportedOperationException("not yet supported");
 	}
 
 	@Override

@@ -3,7 +3,7 @@ package dev.fun.app.client_service.entities;
 import dev.fun.app.client_service.facades.ClientInfoFacade;
 import dev.fun.app.client_service.facades.ClientInfoFacadeImpl;
 import dev.fun.app.client_service.interfaces.Customer;
-import dev.fun.app.client_service.services.ClientServiceImpl;
+import dev.fun.app.client_service.services.CurrentImpl;
 import dev.fun.app.order_service.services.OrderServiceImpl;
 
 public class Client implements Customer {
@@ -80,7 +80,7 @@ public class Client implements Customer {
 	}
 
 	public Client() {
-		this.clientInfoFacade = new ClientInfoFacadeImpl(new ClientServiceImpl(), new OrderServiceImpl());
+		this.clientInfoFacade = new ClientInfoFacadeImpl(new CurrentImpl(), new OrderServiceImpl());
 	}
 	
  	public Client(Integer id, String name, String password, String tel) {
@@ -94,6 +94,12 @@ public class Client implements Customer {
 	@Override
 	public String info() {
 		return clientInfoFacade.getInfo();
+	}
+	
+	@Override
+	public String toString() {
+		return String.format(this.getClass() + "%n id: %d,%n name: %s,%n password: %s,%n tel: %s%n",
+				id, name, password, tel);
 	}
 
 }
