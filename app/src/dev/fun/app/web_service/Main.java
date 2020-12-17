@@ -11,9 +11,11 @@ import java.sql.Statement;
 import dev.fun.app.common.dbconnectors.DBConnector;
 import dev.fun.app.common.dbconnectors.DBConnectorFactory;
 import dev.fun.app.common.dbconnectors.SQLiteConnetorFactory;
+import dev.fun.app.employee_service.controllers.ManagerController;
 import dev.fun.app.employee_service.datamappers.ManagerMapper;
 import dev.fun.app.employee_service.entities.Manager;
 import dev.fun.app.employee_service.enums.Position;
+import dev.fun.app.employee_service.services.ManagerService;
 
 public class Main {
 	
@@ -40,15 +42,17 @@ public class Main {
 		DBConnector connector = connectorFactory.create();
 		
 		ManagerMapper managerMapper = new ManagerMapper(connector);
+		ManagerService managerService = new ManagerService(managerMapper);
+		ManagerController managerController = new ManagerController(managerService);
 		
-		Manager m = new Manager.Builder()
+		Manager manager = new Manager.Builder()
 				.setName("JohnTheManager")
 				.setPassword("secure")
 				.setPosition(Position.MANAGER)
 				.setTel("99999999999")
 				.build();
 	
-		Manager newManager = managerMapper.save(m);
+		Manager newManager = managerController.create(manager);
 		
 		System.out.println(newManager);
 		
