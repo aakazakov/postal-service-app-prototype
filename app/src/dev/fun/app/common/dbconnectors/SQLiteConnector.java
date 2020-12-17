@@ -9,7 +9,7 @@ public class SQLiteConnector implements DBConnector {
 	
 	private Logger logger = Logger.getLogger("SQLiteConnector");
 	
-	private static final String DRIVER = "jdbc:sqlite::memory:";
+	private static final String DRIVER = "jdbc:sqlite:postal.db";
 	
 	private Connection connection;
 	

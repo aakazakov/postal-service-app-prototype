@@ -19,6 +19,8 @@ public class ManagerMapper implements EmployeeMapper<Manager> {
 	
 	private final Map<Integer, Manager> identityMap = new HashMap<>();
 	
+	private final String tableName = "managers";
+	
 	private DBConnector connector;
 
 	public ManagerMapper(DBConnector connector) {
@@ -28,8 +30,9 @@ public class ManagerMapper implements EmployeeMapper<Manager> {
 	@Override
 	public Manager save(Manager manager) {
 		logger.info("`save` method invoked");
-		String query = "INSERT INTO managers (name, password, position, tel) VALUES (?, ?, ?, ?)";
+		String query = "INSERT INTO " + tableName + " (name, password, position, tel) VALUES (?, ?, ?, ?)";
 		Manager newManager = null;
+		Integer id = -1;
 		try (Connection connection = connector.connect();
 				PreparedStatement statement = connection.prepareStatement(query);) {
 			statement.setString(1, manager.getName());
@@ -38,13 +41,14 @@ public class ManagerMapper implements EmployeeMapper<Manager> {
 			statement.setString(4, manager.getTel());
 			int exeSuccess = statement.executeUpdate();
 			if (exeSuccess > 0) {
-				Integer id = getLastInsertedId(connection);
-				connector.disconnect();
-				newManager = findById(id);
+				id = getLastInsertedId(connection);
 			}			
 		} catch (SQLException e) {
 			logger.info(e.getMessage());
-		}		
+		}
+		if (id != -1) {
+			newManager = findById(id);
+		} 
 		return newManager;
 	}
 	
@@ -57,6 +61,7 @@ public class ManagerMapper implements EmployeeMapper<Manager> {
 		} catch (SQLException e) {
 			logger.info(e.getMessage());
 		}
+		logger.info("last inserted id = " + id);
 		return id;
 	}
 
@@ -67,7 +72,7 @@ public class ManagerMapper implements EmployeeMapper<Manager> {
 			return identityMap.get(id);
 		}
 		Manager manager = null;
-		String query = "SELECT m.id, m.name, m.password, m.position, m.tel FROM managers m WHERE m.id=?";
+		String query = "SELECT id, name, password, position, tel FROM " + tableName + " WHERE id=?";
 		try (Connection connection = connector.connect();
 				PreparedStatement statement = connection.prepareStatement(query);) {
 			statement.setInt(1, id);
@@ -83,7 +88,7 @@ public class ManagerMapper implements EmployeeMapper<Manager> {
 		} catch (SQLException e) {
 			logger.info(e.getMessage());
 		}
-		return new Manager();
+		return manager;
 	}
 
 	@Override

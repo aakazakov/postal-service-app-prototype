@@ -1,7 +1,11 @@
 package dev.fun.app.web_service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import dev.fun.app.common.dbconnectors.DBConnector;
@@ -14,35 +18,20 @@ import dev.fun.app.employee_service.enums.Position;
 public class Main {
 	
 	public static void main(String[] args) {
-		
-	// ================================= Demo :) ====================================
-		
-//		{
-//			Customer client = new Client.Builder().setId(10).setName("Client").build();
-//			
-//			Management manager = new Manager.Builder().setId(1).setName("Manager").build();
-//			Customer managerAdapter = new ManagerToCustomerAdapter(manager);
-//			
-//			Customer[] customers = {client, managerAdapter};
-//			
-//			for(Customer c : customers) {
-//				System.out.println(c.info());
-//			}
-//		}
-		
-		// ================================= Demo :) ====================================
-		
 
-		// DB preparation
-		try {
-			Connection connection = DriverManager.getConnection("jdbc:sqlite::memory:"); 
-			Statement s = connection.createStatement();
+		// ================================ Demo :) ================================
+		
+		// >>>>> DB preparation <<<<<
+		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:postal.db");
+				 Statement s = connection.createStatement();) {
+			s.setQueryTimeout(30);
+			s.execute("drop table if exists managers");
 			s.execute("create table managers "
 					+ "(id integer primary key autoincrement, name text, password text, position text, tel text)");
-			connection.close();
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}
+		// >>>>>>>>>>>>><<<<<<<<<<<<<
 		
 		DBConnectorFactory connectorFactory = new SQLiteConnetorFactory();
 		DBConnector connector = connectorFactory.create();
@@ -58,6 +47,14 @@ public class Main {
 	
 		Manager newManager = managerMapper.save(m);
 		System.out.println(newManager.getName());
+		
+		
+		// >>>>> Delete used DB file <<<<<
+		try {
+			Files.delete(Paths.get("postal.db"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }
