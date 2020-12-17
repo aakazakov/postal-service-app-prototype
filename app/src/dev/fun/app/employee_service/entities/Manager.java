@@ -152,5 +152,11 @@ public class Manager extends Employee implements Management {
 	public Client getClient(Integer clientId) {
 		throw new UnsupportedOperationException("temporarily");
 	}
+	
+	@Override
+	public String toString() {
+		return String.format(this.getClass() + "%n id: %d,%n pos: %s,%n name: %s,%n password: %s,%n tel: %s%n",
+				id, position.name(), name, password, tel);
+	}
 
 }

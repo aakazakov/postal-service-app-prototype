@@ -22,6 +22,7 @@ public class Main {
 		// ================================ Demo :) ================================
 		
 		// >>>>> DB preparation <<<<<
+		
 		try (Connection connection = DriverManager.getConnection("jdbc:sqlite:postal.db");
 				 Statement s = connection.createStatement();) {
 			s.setQueryTimeout(30);
@@ -33,20 +34,24 @@ public class Main {
 		}
 		// >>>>>>>>>>>>><<<<<<<<<<<<<
 		
+		// >>>>>>>> Action ) <<<<<<<<	
+		
 		DBConnectorFactory connectorFactory = new SQLiteConnetorFactory();
 		DBConnector connector = connectorFactory.create();
 		
 		ManagerMapper managerMapper = new ManagerMapper(connector);
 		
 		Manager m = new Manager.Builder()
-				.setName("name")
-				.setPassword("pass")
+				.setName("JohnTheManager")
+				.setPassword("secure")
 				.setPosition(Position.MANAGER)
-				.setTel("123456")
+				.setTel("99999999999")
 				.build();
 	
 		Manager newManager = managerMapper.save(m);
-		System.out.println(newManager.getName());
+		
+		System.out.println(newManager);
+		
 		
 		
 		// >>>>> Delete used DB file <<<<<
