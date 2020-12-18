@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import dev.fun.app.client_service.controllers.ClientController;
 import dev.fun.app.client_service.datamappers.ClientMapper;
@@ -20,12 +21,24 @@ import dev.fun.app.client_service.services.ClientServiceImpl;
 import dev.fun.app.common.dbconnectors.DBConnector;
 import dev.fun.app.common.dbconnectors.DBConnectorFactory;
 import dev.fun.app.common.dbconnectors.SQLiteConnetorFactory;
+import dev.fun.app.common.money.Money;
 import dev.fun.app.employee_service.adapters.ManagerToCustomerAdapter;
 import dev.fun.app.employee_service.controllers.ManagerController;
 import dev.fun.app.employee_service.datamappers.ManagerMapper;
 import dev.fun.app.employee_service.entities.Manager;
 import dev.fun.app.employee_service.enums.Position;
 import dev.fun.app.employee_service.services.ManagerService;
+import dev.fun.app.order_service.controllers.OrderController;
+import dev.fun.app.order_service.datamappers.OrderMapper;
+import dev.fun.app.order_service.datamappers.OrderMapperImpl;
+import dev.fun.app.order_service.entities.Order;
+import dev.fun.app.order_service.services.OrderService;
+import dev.fun.app.order_service.services.OrderServiceImpl;
+import dev.fun.app.router_service.controllers.RouterController;
+import dev.fun.app.router_service.datamappers.RoutePointMapper;
+import dev.fun.app.router_service.datamappers.RoutePointMapperImpl;
+import dev.fun.app.router_service.services.Router;
+import dev.fun.app.router_service.services.RouterService;
 
 public class Main {
 	
@@ -50,12 +63,8 @@ public class Main {
 			s.execute("drop table if exists orders");
 			s.execute("create table orders "
 					+ "(id integer primary key autoincrement, weight real, height real, width real, "
-					+ "depth real, sender_id integer, recipient_id, route_id, cost integer, state text)");
-			
-			s.execute("drop table if exists route_points");
-			s.execute("create table route_points "
-					+ "(id integer primary key autoincrement, location text, description)");
-			
+					+ "depth real, sender_id integer, recipient_id integer, cost integer, state text)");
+	
 			
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
@@ -74,6 +83,14 @@ public class Main {
 		ClientMapper clientMapper = new ClientMapperImpl(connector);
 		ClientService clientService = new ClientServiceImpl(clientMapper);
 		ClientController clientController = new ClientController(clientService);
+		
+		RoutePointMapper routePointMapper = new RoutePointMapperImpl(connector);
+		RouterService routerService = new Router(routePointMapper);
+		RouterController routerController = new RouterController(routerService);
+		
+		OrderMapper orderMapper = new OrderMapperImpl(connector);
+		OrderService orderService = new OrderServiceImpl(orderMapper,routerController);
+		OrderController orderController = new OrderController(orderService);
 		
 		Manager m = new Manager.Builder()
 				.setName("JohnTheManager")
@@ -103,13 +120,26 @@ public class Main {
 		Client recipient = clientController.create(c2);	// we have got a recipient
 		System.out.println(recipient);
 		
+		Order o = new Order.Builder()
+				.setWeight(10.0f)
+				.setWidth(1.0f)
+				.setHeight(3.5f)
+				.setDepth(2.0f)
+				.setCost(new Money(500L, Locale.US))
+				.setSenderId(sender.getId())
+				.setRecipientId(recipient.getId())
+				.build();
+		
+		Order order = orderController.create(o);
+		System.out.println(order);
+		
 		// manager adapter check
-		List<Customer> customers = new ArrayList<>();	
-		ManagerToCustomerAdapter managerAdapter = new ManagerToCustomerAdapter(manager);		
-		customers.add(managerAdapter);
-		customers.add(c1);
-		customers.add(c2);
-		customers.forEach(c -> System.out.println(c.info()));
+//		List<Customer> customers = new ArrayList<>();	
+//		ManagerToCustomerAdapter managerAdapter = new ManagerToCustomerAdapter(manager);		
+//		customers.add(managerAdapter);
+//		customers.add(c1);
+//		customers.add(c2);
+//		customers.forEach(c -> System.out.println(c.info())); // FIXME: facade	
 		
 		
 		// >>>>> Delete used DB file <<<<<

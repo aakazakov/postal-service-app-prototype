@@ -1,4 +1,4 @@
-package dev.fun.app.router_service.objects;
+package dev.fun.app.order_service.objects;
 
 import java.util.LinkedList;
 import java.util.List;

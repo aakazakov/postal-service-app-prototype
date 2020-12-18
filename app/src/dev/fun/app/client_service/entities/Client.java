@@ -80,7 +80,7 @@ public class Client implements Customer {
 	}
 
 	public Client() {
-		this.clientInfoFacade = new ClientInfoFacadeImpl(new CurrentImpl(), new OrderServiceImpl());
+//		this.clientInfoFacade = new ClientInfoFacadeImpl(new CurrentImpl(), new OrderServiceImpl());
 	}
 	
  	public Client(Integer id, String name, String password, String tel) {

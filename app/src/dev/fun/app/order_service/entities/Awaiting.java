@@ -1,8 +1,8 @@
 package dev.fun.app.order_service.entities;
 
 
+import dev.fun.app.order_service.objects.Route;
 import dev.fun.app.order_service.states.OrderState;
-import dev.fun.app.router_service.objects.Route;
 
 public class Awaiting implements OrderState {
  
@@ -10,7 +10,7 @@ public class Awaiting implements OrderState {
 	private final Order order;
 
 	public Awaiting(Order order) {
-		this.state = "Awaiting";
+		this.state = "awaiting";
 		this.order = order;
 	}
 	

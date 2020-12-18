@@ -6,15 +6,18 @@ import java.util.Locale;
 
 import org.junit.jupiter.api.Test;
 
+import dev.fun.app.common.dbconnectors.SQLiteConnector;
 import dev.fun.app.common.money.Money;
-import dev.fun.app.router_service.objects.Route;
+import dev.fun.app.order_service.objects.Route;
+import dev.fun.app.router_service.datamappers.RoutePointMapperImpl;
 import dev.fun.app.router_service.services.Router;
 
 class OrderTest {
 
 	@Test
 	void should_buid_an_order() {
-		Route route = (new Router()).route(1, 2);
+		Router router = new Router(new RoutePointMapperImpl(new SQLiteConnector()));
+		Route route = new Route (router.newRoute(1, 2));
 		Order order = new Order.Builder()
 				.setId(1)
 				.setWeight(1.0f)
@@ -45,8 +48,9 @@ class OrderTest {
 	
 	@Test
 	void should_change_route() {
-		Route route = (new Router()).route(1, 2);
-		Route newRoute = (new Router()).route(3, 4);
+		Router router = new Router(new RoutePointMapperImpl(new SQLiteConnector()));
+		Route route = new Route (router.newRoute(1, 2));
+		Route newRoute = new Route (router.newRoute(3, 4));
 		Order order = new Order.Builder()
 				.setId(1)
 				.setRoute(route)

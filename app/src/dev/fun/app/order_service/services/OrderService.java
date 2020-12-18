@@ -13,4 +13,17 @@ public interface OrderService {
 	 */
 	List<Order> getOrders(Integer clientId);
 	
+	Order create(Order order);
+	
+	Order update(Order order);
+	
+	void delete(Integer id);
+	
+	/**
+	 * Returns an order by its id.
+	 * @param id {@link Order} id
+	 * @return {@link Order}
+	 */
+	Order get(Integer id);
+	
 }

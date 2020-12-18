@@ -1,7 +1,7 @@
 package dev.fun.app.order_service.entities;
 
+import dev.fun.app.order_service.objects.Route;
 import dev.fun.app.order_service.states.OrderState;
-import dev.fun.app.router_service.objects.Route;
 
 public class Created implements OrderState {
 
@@ -10,7 +10,7 @@ public class Created implements OrderState {
 	
 	
 	public Created(Order order) {
-		this.state = "Created";
+		this.state = "created";
 		this.order = order;
 	}
 	

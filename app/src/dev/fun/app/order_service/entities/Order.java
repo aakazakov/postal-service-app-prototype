@@ -1,8 +1,8 @@
 package dev.fun.app.order_service.entities;
 
 import dev.fun.app.common.money.Money;
+import dev.fun.app.order_service.objects.Route;
 import dev.fun.app.order_service.states.*;
-import dev.fun.app.router_service.objects.Route;
 
 public class Order {
 	
@@ -223,4 +223,13 @@ public class Order {
 	void setCreated() {
 		state = created;
 	}
+	
+	@Override
+	public String toString() {
+		return String.format(this.getClass() + 
+				"%n id: %d,%n weight: %f,%n height: %f,%n width: %f,%n depth: %f,%n "
+				+ "route: %s,%n senderId: %d,%n recipientId: %d,%n cost: %d,%n state: %s%n",
+				id, weight, height, width, depth, route.toString(), senderId, recipientId, cost.getValue(), state.state());
+	}
+	
 }
