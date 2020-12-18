@@ -141,7 +141,7 @@ public class Main {
 				.setRecipientId(recipient.getId())
 				.build();
 		
-		Order order = orderController.create(o);
+		Order order = orderController.create(o); // we have got an order
 		System.out.println(order);
 		
 		// manager adapter check
