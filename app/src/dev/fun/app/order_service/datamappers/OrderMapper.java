@@ -12,7 +12,7 @@ import dev.fun.app.client_service.datamappers.ClientMapperImpl;
 import dev.fun.app.client_service.entities.Client;
 import dev.fun.app.common.money.Money;
 import dev.fun.app.order_service.entities.Order;
-import dev.fun.app.router_service.entities.Route;
+import dev.fun.app.router_service.objects.Route;
 
 /**
  * All SQL queries are for method testing only

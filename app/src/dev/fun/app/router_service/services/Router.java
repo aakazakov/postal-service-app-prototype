@@ -2,7 +2,7 @@ package dev.fun.app.router_service.services;
 
 import java.util.LinkedList;
 
-import dev.fun.app.router_service.entities.Route;
+import dev.fun.app.router_service.objects.Route;
 
 public class Router implements RouterService {
 	

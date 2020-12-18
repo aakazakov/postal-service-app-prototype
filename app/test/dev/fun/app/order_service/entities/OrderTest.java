@@ -6,9 +6,8 @@ import java.util.Locale;
 
 import org.junit.jupiter.api.Test;
 
-import dev.fun.app.client_service.entities.Client;
 import dev.fun.app.common.money.Money;
-import dev.fun.app.router_service.entities.Route;
+import dev.fun.app.router_service.objects.Route;
 import dev.fun.app.router_service.services.Router;
 
 class OrderTest {
@@ -23,8 +22,8 @@ class OrderTest {
 				.setWidth(3.0f)
 				.setDepth(4.0f)
 				.setRoute(route)
-				.setSender(new Client.Builder().setName("Sender").build())
-				.setRecipient(new Client.Builder().setName("Recipient").build())
+				.setSenderId(1)
+				.setRecipientId(2)
 				.setCost(new Money(123456L, Locale.US))
 				.build();
 		
@@ -35,11 +34,10 @@ class OrderTest {
 		assertEquals(3.0f, order.getWidth());
 		assertEquals(4.0f, order.getDepth());
 		assertEquals(route, order.getRoute());
-		assertEquals("Sender", order.getSender().getName());
-		assertEquals("Recipient", order.getRecipient().getName());
+		assertEquals(1, order.getSenderId());
+		assertEquals(2, order.getRecipientId());
 		assertEquals(123456L, order.getCost().getValue());
 		
-		@SuppressWarnings("static-access")
 		String currentState = order.getState().state();
 		
 		assertEquals("Created", currentState);

@@ -1,6 +1,6 @@
 package dev.fun.app.order_service.states;
 
-import dev.fun.app.router_service.entities.Route;
+import dev.fun.app.router_service.objects.Route;
 
 public interface OrderState {
 	

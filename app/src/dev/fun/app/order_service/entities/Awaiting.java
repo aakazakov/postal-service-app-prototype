@@ -2,7 +2,7 @@ package dev.fun.app.order_service.entities;
 
 
 import dev.fun.app.order_service.states.OrderState;
-import dev.fun.app.router_service.entities.Route;
+import dev.fun.app.router_service.objects.Route;
 
 public class Awaiting implements OrderState {
  

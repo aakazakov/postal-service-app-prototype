@@ -1,9 +1,8 @@
 package dev.fun.app.order_service.entities;
 
-import dev.fun.app.client_service.entities.Client;
 import dev.fun.app.common.money.Money;
 import dev.fun.app.order_service.states.*;
-import dev.fun.app.router_service.entities.Route;
+import dev.fun.app.router_service.objects.Route;
 
 public class Order {
 	
@@ -44,13 +43,13 @@ public class Order {
 			return this;
 		}
 				
-		public Builder setSender(Client sender) {
-			this.order.setSender(sender);
+		public Builder setSenderId(Integer senderId) {
+			this.order.setSenderId(senderId);
 			return this;
 		}
 		
-		public Builder setRecipient(Client recipient) {
-			this.order.setRecipient(recipient);
+		public Builder setRecipientId(Integer recipientId) {
+			this.order.setRecipientId(recipientId);
 			return this;
 		}
 		
@@ -76,8 +75,8 @@ public class Order {
 	private Float height;
 	private Float width;
 	private Float depth;
-	private Client sender;
-	private Client recipient;
+	private Integer senderId;
+	private Integer recipientId;
 	private Route route;
 	private Money cost;
 	private OrderState state;
@@ -122,20 +121,20 @@ public class Order {
 		this.depth = depth;
 	}
 
-	public Client getSender() {
-		return sender;
+	public Integer getSenderId() {
+		return senderId;
 	}
 
-	public void setSender(Client sender) {
-		this.sender = sender;
+	public void setSenderId(Integer sender) {
+		this.senderId = sender;
 	}
 
-	public Client getRecipient() {
-		return recipient;
+	public Integer getRecipientId() {
+		return recipientId;
 	}
 
-	public void setRecipient(Client recipient) {
-		this.recipient = recipient;
+	public void setRecipientId(Integer recipient) {
+		this.recipientId = recipient;
 	}
 
 	public Route getRoute() {
@@ -171,7 +170,7 @@ public class Order {
 	}
 
 	public Order(Integer id, Float weight, Float height, Float width, Float depth,
-			Route route, Client sender, Client recipient, Money cost) {
+			Route route, Integer sender, Integer recipient, Money cost) {
 		this();
 		this.id = id;
 		this.weight = weight;
@@ -179,8 +178,8 @@ public class Order {
 		this.width = width;
 		this.depth = depth;
 		this.route = route;
-		this.sender = sender;
-		this.recipient = recipient;
+		this.senderId = sender;
+		this.recipientId = recipient;
 		this.cost = cost;
 		this.state = this.created;
 	}
