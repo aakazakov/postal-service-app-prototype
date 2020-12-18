@@ -82,7 +82,7 @@ public class Main {
 				.setTel("99999999999")
 				.build();
 	
-		Manager manager = managerController.create(m);	
+		Manager manager = managerController.create(m); // we have got a manager	
 		System.out.println(manager);
 		
 		Client c1 = new Client.Builder()
@@ -91,7 +91,7 @@ public class Main {
 				.setTel("88888888888")
 				.build();	
 		
-		Client sender = clientController.create(c1);		
+		Client sender = clientController.create(c1);	// we have got a sender	
 		System.out.println(sender);
 		
 		Client c2 = new Client.Builder()
@@ -100,9 +100,10 @@ public class Main {
 				.setTel("77777777777")
 				.build();
 		
-		Client recipient = clientController.create(c2);	
+		Client recipient = clientController.create(c2);	// we have got a recipient
 		System.out.println(recipient);
 		
+		// manager adapter check
 		List<Customer> customers = new ArrayList<>();	
 		ManagerToCustomerAdapter managerAdapter = new ManagerToCustomerAdapter(manager);		
 		customers.add(managerAdapter);
