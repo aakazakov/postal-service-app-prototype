@@ -47,6 +47,16 @@ public class Main {
 			s.execute("create table clients "
 					+ "(id integer primary key autoincrement, name text, password text, tel text)");
 			
+			s.execute("drop table if exists orders");
+			s.execute("create table orders "
+					+ "(id integer primary key autoincrement, weight real, height real, width real, "
+					+ "depth real, sender_id integer, recipient_id, route_id, cost integer, state text)");
+			
+			s.execute("drop table if exists route_points");
+			s.execute("create table route_points "
+					+ "(id integer primary key autoincrement, location text, description)");
+			
+			
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 		}
