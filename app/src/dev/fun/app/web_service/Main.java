@@ -15,9 +15,12 @@ import dev.fun.app.client_service.controllers.ClientController;
 import dev.fun.app.client_service.datamappers.ClientMapper;
 import dev.fun.app.client_service.datamappers.ClientMapperImpl;
 import dev.fun.app.client_service.entities.Client;
+import dev.fun.app.client_service.facades.ClientInfoFacade;
+import dev.fun.app.client_service.facades.ClientInfoFacadeImpl;
 import dev.fun.app.client_service.interfaces.Customer;
 import dev.fun.app.client_service.services.ClientService;
 import dev.fun.app.client_service.services.ClientServiceImpl;
+import dev.fun.app.client_service.services.LoggedInImpl;
 import dev.fun.app.common.dbconnectors.DBConnector;
 import dev.fun.app.common.dbconnectors.DBConnectorFactory;
 import dev.fun.app.common.dbconnectors.SQLiteConnetorFactory;
@@ -92,6 +95,8 @@ public class Main {
 		OrderService orderService = new OrderServiceImpl(orderMapper,routerController);
 		OrderController orderController = new OrderController(orderService);
 		
+		ClientInfoFacade clientInfoFacade = new ClientInfoFacadeImpl(new LoggedInImpl(), orderController);
+		
 		Manager m = new Manager.Builder()
 				.setName("JohnTheManager")
 				.setPassword("secure")
@@ -108,7 +113,10 @@ public class Main {
 				.setTel("88888888888")
 				.build();	
 		
-		Client sender = clientController.create(c1);	// we have got a sender	
+		Client sender = clientController.create(c1); // we have got a sender
+		
+		sender.setClientInfoFacade(clientInfoFacade);
+		
 		System.out.println(sender);
 		
 		Client c2 = new Client.Builder()
@@ -118,6 +126,9 @@ public class Main {
 				.build();
 		
 		Client recipient = clientController.create(c2);	// we have got a recipient
+		
+		recipient.setClientInfoFacade(clientInfoFacade);
+		
 		System.out.println(recipient);
 		
 		Order o = new Order.Builder()
@@ -134,12 +145,12 @@ public class Main {
 		System.out.println(order);
 		
 		// manager adapter check
-//		List<Customer> customers = new ArrayList<>();	
-//		ManagerToCustomerAdapter managerAdapter = new ManagerToCustomerAdapter(manager);		
-//		customers.add(managerAdapter);
-//		customers.add(c1);
-//		customers.add(c2);
-//		customers.forEach(c -> System.out.println(c.info())); // FIXME: facade	
+		List<Customer> customers = new ArrayList<>();	
+		ManagerToCustomerAdapter managerAdapter = new ManagerToCustomerAdapter(manager);		
+		customers.add(managerAdapter);
+		customers.add(sender);
+		customers.add(recipient);
+		customers.forEach(c -> System.out.println(c.info()));
 		
 		
 		// >>>>> Delete used DB file <<<<<

@@ -1,10 +1,7 @@
 package dev.fun.app.client_service.entities;
 
 import dev.fun.app.client_service.facades.ClientInfoFacade;
-import dev.fun.app.client_service.facades.ClientInfoFacadeImpl;
 import dev.fun.app.client_service.interfaces.Customer;
-import dev.fun.app.client_service.services.CurrentImpl;
-import dev.fun.app.order_service.services.OrderServiceImpl;
 
 public class Client implements Customer {
 	
@@ -32,6 +29,11 @@ public class Client implements Customer {
 		
 		public Builder setTel(String tel) {
 			this.client.setTel(tel);
+			return this;
+		}
+		
+		public Builder setClientInfoFacade(ClientInfoFacade clientInfoFacade) {
+			this.client.setClientInfoFacade(clientInfoFacade);
 			return this;
 		}
 		
@@ -78,9 +80,13 @@ public class Client implements Customer {
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
+	
+	public void setClientInfoFacade(ClientInfoFacade clientInfoFacade) {
+		this.clientInfoFacade = clientInfoFacade;
+	}
 
 	public Client() {
-//		this.clientInfoFacade = new ClientInfoFacadeImpl(new CurrentImpl(), new OrderServiceImpl());
+		
 	}
 	
  	public Client(Integer id, String name, String password, String tel) {
