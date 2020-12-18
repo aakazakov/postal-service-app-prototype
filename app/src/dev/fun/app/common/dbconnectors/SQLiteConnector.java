@@ -19,7 +19,6 @@ public class SQLiteConnector implements DBConnector {
 
 	@Override
 	public Connection connect() {
-		logger.info("`connect` method invoked");
 		try {
 			connection = DriverManager.getConnection(DRIVER);
 		} catch (SQLException e) {
@@ -30,7 +29,6 @@ public class SQLiteConnector implements DBConnector {
 
 	@Override
 	public void disconnect() {
-		logger.info("`disconnect` method invoked");
 		if (connection == null) return;
 		try {
 			connection.close();

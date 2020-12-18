@@ -15,7 +15,7 @@ import dev.fun.app.employee_service.enums.Position;
 
 public class ManagerMapper implements EmployeeMapper<Manager> {
 	
-	private Logger logger = Logger.getLogger("EmployeeMapperImpl");
+	private Logger logger = Logger.getLogger("ManagerMapper");
 	
 	private final Map<Integer, Manager> identityMap = new HashMap<>();
 	
@@ -29,7 +29,6 @@ public class ManagerMapper implements EmployeeMapper<Manager> {
 
 	@Override
 	public Manager save(Manager manager) {
-		logger.info("`save` method invoked");
 		String query = "INSERT INTO " + tableName + " (name, password, position, tel) VALUES (?, ?, ?, ?)";
 		Manager newManager = null;
 		Integer id = -1;
@@ -53,7 +52,6 @@ public class ManagerMapper implements EmployeeMapper<Manager> {
 	}
 	
 	private Integer getLastInsertedId(Connection connection) {
-		logger.info("`getLastInsertedId` method invoked");
 		Integer id = null;
 		try (Statement statement = connection.createStatement()) {
 			ResultSet set = statement.executeQuery("SELECT last_insert_rowid() FROM " + tableName);
@@ -67,7 +65,6 @@ public class ManagerMapper implements EmployeeMapper<Manager> {
 
 	@Override
 	public Manager findById(Integer id) {
-		logger.info("`findById` method invoked");
 		if (inCache(id)) {
 			return identityMap.get(id);
 		}
