@@ -2,6 +2,7 @@ package dev.fun.app.client_service.controllers;
 
 import dev.fun.app.client_service.entities.Client;
 import dev.fun.app.client_service.services.ClientService;
+import dev.fun.app.common.exceptions.IncorrectlyFilledCredentialsException;
 
 public class ClientController {
 	
@@ -11,7 +12,7 @@ public class ClientController {
 		this.clientService = clientService;
 	}
 	
-	public Client create(Client client) {
+	public Client create(Client client) throws IncorrectlyFilledCredentialsException {
 		return clientService.create(client);
 	}
 	

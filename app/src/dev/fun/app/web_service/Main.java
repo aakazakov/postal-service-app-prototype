@@ -24,6 +24,7 @@ import dev.fun.app.client_service.services.LoggedInImpl;
 import dev.fun.app.common.dbconnectors.DBConnector;
 import dev.fun.app.common.dbconnectors.DBConnectorFactory;
 import dev.fun.app.common.dbconnectors.SQLiteConnetorFactory;
+import dev.fun.app.common.exceptions.IncorrectlyFilledCredentialsException;
 import dev.fun.app.common.money.Money;
 import dev.fun.app.employee_service.adapters.ManagerToCustomerAdapter;
 import dev.fun.app.employee_service.controllers.ManagerController;
@@ -105,7 +106,12 @@ public class Main {
 				.setTel("99999999999")
 				.build();
 	
-		Manager manager = managerController.create(m); // we have got a manager	
+		Manager manager = null;
+		try {
+			manager = managerController.create(m); // we have got a manager
+		} catch (IncorrectlyFilledCredentialsException e) {
+			e.printStackTrace();
+		}
 		System.out.println(manager);
 		
 		Client c1 = new Client.Builder()
@@ -114,7 +120,12 @@ public class Main {
 				.setTel("88888888888")
 				.build();	
 		
-		Client sender = clientController.create(c1); // we have got a sender		
+		Client sender = null;
+		try {
+			sender = clientController.create(c1);  // we have got a sender
+		} catch (IncorrectlyFilledCredentialsException e) {
+			e.printStackTrace();
+		}		
 		System.out.println(sender);
 		
 		Client c2 = new Client.Builder()
@@ -123,7 +134,12 @@ public class Main {
 				.setTel("77777777777")
 				.build();
 		
-		Client recipient = clientController.create(c2);	// we have got a recipient		
+		Client recipient = null;
+		try {
+			recipient = clientController.create(c2);	// we have got a recipient
+		} catch (IncorrectlyFilledCredentialsException e) {
+			e.printStackTrace();
+		}
 		System.out.println(recipient);
 		
 		Order o = new Order.Builder()

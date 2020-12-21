@@ -1,5 +1,6 @@
 package dev.fun.app.employee_service.controllers;
 
+import dev.fun.app.common.exceptions.IncorrectlyFilledCredentialsException;
 import dev.fun.app.employee_service.entities.Manager;
 import dev.fun.app.employee_service.services.ManagerService;
 
@@ -11,7 +12,7 @@ public class ManagerController {
 		this.managerService = managerService;
 	}
 	
-	public Manager create(Manager manager) {
+	public Manager create(Manager manager) throws IncorrectlyFilledCredentialsException {
 		return managerService.create(manager);
 	}
 	
