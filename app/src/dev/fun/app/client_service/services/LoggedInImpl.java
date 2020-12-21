@@ -6,7 +6,7 @@ public class LoggedInImpl implements LoggedIn {
 
 	@Override
 	public Client getCurrent() {
-		return new Client();
+		return new Client.Builder().setId(5).setName("Current").build();
 	}
 
 }
