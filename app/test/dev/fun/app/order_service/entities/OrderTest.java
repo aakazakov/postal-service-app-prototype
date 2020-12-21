@@ -6,8 +6,8 @@ import java.util.Locale;
 
 import org.junit.jupiter.api.Test;
 
-import dev.fun.app.common.dbconnectors.SQLiteConnector;
-import dev.fun.app.common.money.Money;
+import dev.fun.app.db.connectors.SQLiteConnector;
+import dev.fun.app.finance.money.Money;
 import dev.fun.app.order_service.objects.Route;
 import dev.fun.app.router_service.datamappers.RoutePointMapperImpl;
 import dev.fun.app.router_service.services.Router;

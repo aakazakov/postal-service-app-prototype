@@ -13,8 +13,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import dev.fun.app.common.dbconnectors.DBConnector;
-import dev.fun.app.common.money.Money;
+import dev.fun.app.db.connectors.DBConnector;
+import dev.fun.app.finance.money.Money;
 import dev.fun.app.order_service.entities.Order;
 
 public class OrderMapperImpl implements OrderMapper {

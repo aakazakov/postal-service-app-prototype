@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import dev.fun.app.client_service.entities.Client;
-import dev.fun.app.common.exceptions.IncorrectlyFilledCredentialsException;
+import dev.fun.app.exceptions.IncorrectlyFilledCredentialsException;
 
 class ClientServiceTest {
 

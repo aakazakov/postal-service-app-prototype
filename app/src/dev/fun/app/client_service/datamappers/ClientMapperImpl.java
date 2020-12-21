@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import dev.fun.app.client_service.entities.Client;
-import dev.fun.app.common.dbconnectors.DBConnector;
+import dev.fun.app.db.connectors.DBConnector;
 
 public class ClientMapperImpl implements ClientMapper {
 	

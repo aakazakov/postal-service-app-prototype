@@ -2,7 +2,7 @@ package dev.fun.app.client_service.controllers;
 
 import dev.fun.app.client_service.entities.Client;
 import dev.fun.app.client_service.services.ClientService;
-import dev.fun.app.common.exceptions.IncorrectlyFilledCredentialsException;
+import dev.fun.app.exceptions.IncorrectlyFilledCredentialsException;
 
 public class ClientController {
 	

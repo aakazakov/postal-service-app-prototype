@@ -1,7 +1,7 @@
 package dev.fun.app.employee_service.services;
 
-import dev.fun.app.common.exceptions.IncorrectlyFilledCredentialsException;
 import dev.fun.app.employee_service.entities.Employee;
+import dev.fun.app.exceptions.IncorrectlyFilledCredentialsException;
 
 public interface EmployeeService<T extends Employee> {
 	

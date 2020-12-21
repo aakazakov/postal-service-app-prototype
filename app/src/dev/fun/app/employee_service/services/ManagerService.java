@@ -1,8 +1,8 @@
 package dev.fun.app.employee_service.services;
 
-import dev.fun.app.common.exceptions.IncorrectlyFilledCredentialsException;
 import dev.fun.app.employee_service.datamappers.EmployeeMapper;
 import dev.fun.app.employee_service.entities.Manager;
+import dev.fun.app.exceptions.IncorrectlyFilledCredentialsException;
 
 public class ManagerService implements EmployeeService<Manager> {
 	

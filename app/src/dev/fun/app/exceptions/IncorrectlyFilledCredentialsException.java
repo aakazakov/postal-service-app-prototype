@@ -1,4 +1,4 @@
-package dev.fun.app.common.exceptions;
+package dev.fun.app.exceptions;
 
 /**
  * Thrown to indicate that the required entity credentials are null or invalid.

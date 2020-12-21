@@ -1,4 +1,4 @@
-package dev.fun.app.common.money;
+package dev.fun.app.finance.money;
 
 import java.text.NumberFormat;
 import java.util.Locale;

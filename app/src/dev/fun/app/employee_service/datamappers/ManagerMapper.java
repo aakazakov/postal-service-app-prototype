@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import dev.fun.app.common.dbconnectors.DBConnector;
+import dev.fun.app.db.connectors.DBConnector;
 import dev.fun.app.employee_service.entities.Manager;
 import dev.fun.app.employee_service.enums.Position;
 

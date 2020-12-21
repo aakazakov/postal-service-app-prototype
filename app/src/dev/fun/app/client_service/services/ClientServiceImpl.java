@@ -3,7 +3,7 @@ package dev.fun.app.client_service.services;
 import dev.fun.app.client_service.datamappers.ClientMapper;
 import dev.fun.app.client_service.entities.Client;
 import dev.fun.app.client_service.facades.ClientInfoFacade;
-import dev.fun.app.common.exceptions.IncorrectlyFilledCredentialsException;
+import dev.fun.app.exceptions.IncorrectlyFilledCredentialsException;
 
 public class ClientServiceImpl implements ClientService {
 

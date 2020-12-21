@@ -1,7 +1,7 @@
 package dev.fun.app.client_service.services;
 
 import dev.fun.app.client_service.entities.Client;
-import dev.fun.app.common.exceptions.IncorrectlyFilledCredentialsException;
+import dev.fun.app.exceptions.IncorrectlyFilledCredentialsException;
 
 public interface ClientService {
 		

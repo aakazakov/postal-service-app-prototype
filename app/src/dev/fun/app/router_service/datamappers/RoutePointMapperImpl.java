@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import dev.fun.app.common.dbconnectors.DBConnector;
+import dev.fun.app.db.connectors.DBConnector;
 import dev.fun.app.employee_service.entities.Manager;
 import dev.fun.app.router_service.entities.RoutePoint;
 import dev.fun.app.router_service.objects.Location;

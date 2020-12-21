@@ -1,6 +1,6 @@
 package dev.fun.app.order_service.entities;
 
-import dev.fun.app.common.money.Money;
+import dev.fun.app.finance.money.Money;
 import dev.fun.app.order_service.objects.Route;
 import dev.fun.app.order_service.states.*;
 

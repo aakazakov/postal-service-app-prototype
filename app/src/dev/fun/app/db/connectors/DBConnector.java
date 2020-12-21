@@ -1,4 +1,4 @@
-package dev.fun.app.common.dbconnectors;
+package dev.fun.app.db.connectors;
 
 import java.sql.Connection;
 

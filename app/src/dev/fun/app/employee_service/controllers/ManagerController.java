@@ -1,8 +1,8 @@
 package dev.fun.app.employee_service.controllers;
 
-import dev.fun.app.common.exceptions.IncorrectlyFilledCredentialsException;
 import dev.fun.app.employee_service.entities.Manager;
 import dev.fun.app.employee_service.services.ManagerService;
+import dev.fun.app.exceptions.IncorrectlyFilledCredentialsException;
 
 public class ManagerController {
 	
