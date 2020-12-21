@@ -83,10 +83,6 @@ public class Main {
 		ManagerService managerService = new ManagerService(managerMapper);
 		ManagerController managerController = new ManagerController(managerService);
 		
-		ClientMapper clientMapper = new ClientMapperImpl(connector);
-		ClientService clientService = new ClientServiceImpl(clientMapper);
-		ClientController clientController = new ClientController(clientService);
-		
 		RoutePointMapper routePointMapper = new RoutePointMapperImpl(connector);
 		RouterService routerService = new Router(routePointMapper);
 		RouterController routerController = new RouterController(routerService);
@@ -96,6 +92,11 @@ public class Main {
 		OrderController orderController = new OrderController(orderService);
 		
 		ClientInfoFacade clientInfoFacade = new ClientInfoFacadeImpl(new LoggedInImpl(), orderController);
+		
+		ClientMapper clientMapper = new ClientMapperImpl(connector);
+		ClientService clientService = new ClientServiceImpl(clientMapper, clientInfoFacade);
+		ClientController clientController = new ClientController(clientService);
+		
 		
 		Manager m = new Manager.Builder()
 				.setName("JohnTheManager")
@@ -113,10 +114,7 @@ public class Main {
 				.setTel("88888888888")
 				.build();	
 		
-		Client sender = clientController.create(c1); // we have got a sender
-		
-		sender.setClientInfoFacade(clientInfoFacade);
-		
+		Client sender = clientController.create(c1); // we have got a sender		
 		System.out.println(sender);
 		
 		Client c2 = new Client.Builder()
@@ -125,10 +123,7 @@ public class Main {
 				.setTel("77777777777")
 				.build();
 		
-		Client recipient = clientController.create(c2);	// we have got a recipient
-		
-		recipient.setClientInfoFacade(clientInfoFacade);
-		
+		Client recipient = clientController.create(c2);	// we have got a recipient		
 		System.out.println(recipient);
 		
 		Order o = new Order.Builder()
