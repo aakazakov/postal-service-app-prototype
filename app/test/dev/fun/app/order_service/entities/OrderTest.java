@@ -43,7 +43,7 @@ class OrderTest {
 		
 		String currentState = order.getState().state();
 		
-		assertEquals("Created", currentState);
+		assertEquals("created", currentState);
 	}
 	
 	@Test
@@ -71,7 +71,7 @@ class OrderTest {
 		
 		String newState = order.getState().state();
 		
-		assertEquals("Completed", newState);
+		assertEquals("completed", newState);
 	}
 
 }
